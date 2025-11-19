@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
-
-// 全局 AudioPlayer 實例
-final player=AudioPlayer()..setReleaseMode(ReleaseMode.loop);
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +29,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  // 四個分頁
   final tabs=[
     Screen1(),
     Screen2(),
@@ -44,22 +39,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int previousIndex=0;
   int currentIndex=0;
 
-  // 初始化狀態，播放第一個螢幕的音訊
   @override
   void initState() {
     super.initState();
-    // 應用程式啟動時，預設播放 Screen1 的音訊
-    player.play(AssetSource("1.mp3"));
   }
-
-  // 避免音訊控制邏輯在 build 方法中被重複調用
-  /*
-  @override
-  Widget build(BuildContext context) {
-    if (currentIndex==0) player.play(AssetSource("1.mp3")); // <-- 這一行應避免在 build 執行
-    // ...
-  }
-  */
 
   @override
   Widget build(BuildContext context) {
@@ -88,32 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
           setState(() {
             previousIndex=currentIndex;
             currentIndex=index;
-
-            // 停止當前音訊
-            // 註: 你的原始碼中，即使點擊同一個 tab，也會執行 stop() 和 play()。
-            // 為了簡化邏輯和確保音訊切換，我們在切換 tab 時無條件停止當前音訊並播放新的。
-            // 如果 index == previousIndex，則可以考慮只 resume() 或什麼都不做，但你原始碼的邏輯是重新播放。
-            player.stop();
-
-            String audioAsset = '';
-            switch (index) {
-              case 0:
-                audioAsset = "1.mp3";
-                break;
-              case 1:
-                audioAsset = "2.mp3";
-                break;
-              case 2:
-                audioAsset = "3.mp3";
-                break;
-              case 3:
-                audioAsset = "4.mp3";
-                break;
-            }
-
-            // 播放新的音訊
-            player.play(AssetSource(audioAsset));
-
           });
         },
       ),
@@ -122,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 // ----------------------------------------------------
-// Screen1 - 自我介紹 (維持不變)
+// Screen1 - 自我介紹
 // ----------------------------------------------------
 class Screen1 extends StatelessWidget {
   Screen1({super.key});
@@ -175,7 +132,6 @@ class Screen1 extends StatelessWidget {
                   image: const DecorationImage(image: AssetImage('assets/a2.png'), fit: BoxFit.cover),
                 ),
               ),
-              //SizedBox(width: 10,),
               Container(
                 width: 150,
                 height: 150,
@@ -194,7 +150,7 @@ class Screen1 extends StatelessWidget {
 }
 
 // ----------------------------------------------------
-// Screen2 - 學習歷程 (維持不變)
+// Screen2 - 學習歷程
 // ----------------------------------------------------
 class Screen2 extends StatelessWidget {
   Screen2({super.key});
@@ -265,7 +221,7 @@ class Screen2 extends StatelessWidget {
 
 
 // ----------------------------------------------------
-// Screen3 - 學習計畫 (已修改為標題與內容包在同一個 Card 內)
+// Screen3 - 學習計畫
 // ----------------------------------------------------
 class Screen3 extends StatelessWidget {
   const Screen3({super.key});
@@ -275,7 +231,7 @@ class Screen3 extends StatelessWidget {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch, // 讓 Card 佔滿寬度
+        crossAxisAlignment: CrossAxisAlignment.stretch, 
         children: [
           const Center(
             child: Text(
@@ -285,10 +241,9 @@ class Screen3 extends StatelessWidget {
           ),
           const SizedBox(height: 20,),
 
-          // 大一時期 Card
           Card(
             elevation: 5,
-            color: Colors.lightBlue.shade100, // 沿用 Screen2 的顏色作為範例
+            color: Colors.lightBlue.shade100,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             child: Padding(
               padding: const EdgeInsets.all(15.0),
@@ -319,7 +274,6 @@ class Screen3 extends StatelessWidget {
 
           const SizedBox(height: 30,),
 
-          // 大二時期 Card
           Card(
             elevation: 5,
             color: Colors.green.shade100,
@@ -355,7 +309,6 @@ class Screen3 extends StatelessWidget {
 
           const SizedBox(height: 30,),
 
-          // 大三時期 Card
           Card(
             elevation: 5,
             color: Colors.deepPurple.shade100,
@@ -392,7 +345,7 @@ class Screen3 extends StatelessWidget {
 
           const SizedBox(height: 20,),
           Center(
-            child: Image.asset('assets/a3.jpg', width: 250, height: 250,), // 放置圖片
+            child: Image.asset('assets/a3.jpg', width: 250, height: 250,), 
           ),
           const SizedBox(height: 20,),
 
@@ -403,7 +356,7 @@ class Screen3 extends StatelessWidget {
 }
 
 // ----------------------------------------------------
-// Screen4 - 專業方向 (維持不變)
+// Screen4 - 專業方向 
 // ----------------------------------------------------
 class Screen4 extends StatelessWidget {
   const Screen4({super.key});
@@ -421,23 +374,21 @@ class Screen4 extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-          // 方向一：軟體工程師 (Software Engineer) - 已修改
           buildDirectionCard(
             context,
             '全端軟體開發工程師',
             '專注於網頁與應用程式的前後端設計、開發與維護。',
-            'assets/a4.png', // 假設這是你的 a4.png
+            'assets/a4.png', 
             Colors.lightBlue.shade100,
           ),
 
           const SizedBox(height: 20),
 
-          // 方向二：人工智慧與資料分析 - 已修改
           buildDirectionCard(
             context,
             'AI 模型與資料專案工程師',
             '利用機器學習技術，並配合現在市場上的大型語言模型，開發 AI 專案與應用。',
-            'assets/a2.png', // 範例圖片
+            'assets/a2.png', 
             Colors.green.shade100,
           ),
 
@@ -451,7 +402,6 @@ class Screen4 extends StatelessWidget {
     );
   }
 
-  // 輔助方法：創建專業方向的卡片
   Widget buildDirectionCard(BuildContext context, String title, String detail, String imagePath, Color color) {
     return Card(
       elevation: 4,
