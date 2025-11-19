@@ -127,8 +127,8 @@ class _MyHomePageState extends State<MyHomePage> {
 class Screen1 extends StatelessWidget {
   Screen1({super.key});
 
-  final String s1="我出生在一個很平凡但很美滿的小家庭，父親是個工程師兼家庭主夫，母親是個文書工作者。姐姐和我都還在學校求學。父母用民主的方式管教我們，希望我們能夠獨立自主、主動學習，累積人生經驗，但他們會適時的給予鼓勵和建議，父母親只對我們要求兩件事，第一是保持健康，第二是過得快樂。因為沒有健康的身體，就算有再多的才華、再大的抱負也無法發揮出來。又因為家境並不富裕，所以必須專心於課業上，學得一技之長，將來才能自立更生。"
-      "因從小看著父親當工程師所以我也想當，於是高職進了資訊科，進高職後，每天都覺得很充實、很快樂。高職學生的特色是基本都上科大，所以我不斷地努力學習，最後到達高科。";
+  final String s1="我出生在一個平凡卻溫暖的小家庭。父親是工廠的經理，母親是家庭主婦。姐姐已經出社會工作，而我還在求學中。父母的管教方式相當民主，他們希望我們能夠獨立自主、主動學習，累積生活經驗，也會在適當的時候給予鼓勵與建議。他們對我們只有一個要求：希望我們能過得快樂。由於家境並不富裕，因此更要專心學好一技之長，將來才能自立。"
+      "從小看著父親在工廠管理與處理工作，我也曾嚮往能走上類似的職業方向。升學時，我原本也考慮過商科，但我發現自己不太擅長考試，對商科那種大量筆試的訓練並不適合。因此，我最後選擇了資訊科，希望未來能靠資訊技能找到穩定且收入良好的工作。進入資訊科後，雖然最初的動機是「為了將來能賺錢」，但在實作與課程的過程裡，我漸漸覺得每天都過得很充實，也從中獲得成就感。由於高職學生多半會升科大，我也持續努力學習，最後順利考上高科。";
 
   @override
   Widget build(BuildContext context) {
@@ -194,16 +194,16 @@ class Screen1 extends StatelessWidget {
 }
 
 // ----------------------------------------------------
-// Screen2 - 學習歷程 (新增)
+// Screen2 - 學習歷程 (維持不變)
 // ----------------------------------------------------
 class Screen2 extends StatelessWidget {
   Screen2({super.key});
 
   final List<Map<String, String>> experiences = [
     {
-      'title': '高中時期',
+      'title': '高職時期',
       'period': '2020.09 - 2023.06',
-      'detail': '在高職三年，專注於校內科目。這段經歷確立了我未來投入資訊工程的目標。',
+      'detail': '在高職三年，校內科目讓我把基本功打好。這段經歷成為我往資訊工程發展的基礎。',
     },
 
   ];
@@ -227,6 +227,7 @@ class Screen2 extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Card(
                   elevation: 5,
+                  color: Colors.lightBlue.shade100,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -264,17 +265,17 @@ class Screen2 extends StatelessWidget {
 
 
 // ----------------------------------------------------
-// Screen3 - 學習計畫 (維持不變，僅做了小修正)
+// Screen3 - 學習計畫 (已修改為標題與內容包在同一個 Card 內)
 // ----------------------------------------------------
 class Screen3 extends StatelessWidget {
   const Screen3({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView( // 加上 SingleChildScrollView
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch, // 讓 Card 佔滿寬度
         children: [
           const Center(
             child: Text(
@@ -284,55 +285,106 @@ class Screen3 extends StatelessWidget {
           ),
           const SizedBox(height: 20,),
 
-          // 大一時期
-          const Text("大一時期 ", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.blueGrey)),
-          const SizedBox(height: 10,),
-          Container(
-            padding: const EdgeInsets.only(left: 15),
-            decoration: const BoxDecoration(
-              border: Border(left: BorderSide(color: Colors.amber, width: 4)),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("1. 程式語言：開始學習 C/C++ 與組合語言，打下未來寫程式的基礎。", style: const TextStyle(fontSize: 20,)),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 30,),
-
-          // 大二時期
-          const Text("大二時期", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.blueGrey)),
-          const SizedBox(height: 10,),
-          Container(
-            padding: const EdgeInsets.only(left: 15),
-            decoration: const BoxDecoration(
-              border: Border(left: BorderSide(color: Colors.redAccent, width: 4)),
-            ),
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("1. 核心課程：學習資料結構、微處理機、系統程式等核心課程。", style: TextStyle(fontSize: 20,)),
-              ],
+          // 大一時期 Card
+          Card(
+            elevation: 5,
+            color: Colors.lightBlue.shade100, // 沿用 Screen2 的顏色作為範例
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "大一時期 ",
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.blueGrey),
+                  ),
+                  const Divider(height: 15, thickness: 1, color: Colors.amber),
+                  Container(
+                    padding: const EdgeInsets.only(left: 15),
+                    decoration: const BoxDecoration(
+                      border: Border(left: BorderSide(color: Colors.amber, width: 4)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("1. 程式語言：開始學習 C/C++ 與組合語言，打下未來寫程式的基礎。", style: const TextStyle(fontSize: 20,)),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 
           const SizedBox(height: 30,),
 
-          // 大三時期
-          const Text("大三時期", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.blueGrey)),
-          const SizedBox(height: 10,),
-          Container(
-            padding: const EdgeInsets.only(left: 15),
-            decoration: const BoxDecoration(
-              border: Border(left: BorderSide(color: Colors.purple, width: 4)),
+          // 大二時期 Card
+          Card(
+            elevation: 5,
+            color: Colors.green.shade100,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "大二時期",
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.blueGrey),
+                  ),
+                  const Divider(height: 15, thickness: 1, color: Colors.redAccent),
+                  Container(
+                    padding: const EdgeInsets.only(left: 15),
+                    decoration: const BoxDecoration(
+                      border: Border(left: BorderSide(color: Colors.redAccent, width: 4)),
+                    ),
+                    child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("1. 核心課程：學習資料結構、微處理機、系統程式等核心課程。", style: TextStyle(fontSize: 20,)),
+                        Text("2. 網頁開發：深入學習 HTML/CSS/JavaScript，並掌握後端技術。", style: TextStyle(fontSize: 20,)),
+                        Text("3. Java 學習：開始學習 Java 程式語言，為物件導向與企業級應用打下基礎。", style: TextStyle(fontSize: 20,)),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(" 1.畢業專題：確定畢業專題方向，組建團隊並開始研究開發。", style: TextStyle(fontSize: 20,)),
-              ],
+          ),
+
+          const SizedBox(height: 30,),
+
+          // 大三時期 Card
+          Card(
+            elevation: 5,
+            color: Colors.deepPurple.shade100,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "大三時期",
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.blueGrey),
+                  ),
+                  const Divider(height: 15, thickness: 1, color: Colors.purple),
+                  Container(
+                    padding: const EdgeInsets.only(left: 15),
+                    decoration: const BoxDecoration(
+                      border: Border(left: BorderSide(color: Colors.purple, width: 4)),
+                    ),
+                    child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("1. 畢業專題：確定畢業專題方向，組建團隊並開始研究開發。", style: TextStyle(fontSize: 20,)),
+                        Text("2. 學習App 開發：學習行動應用開發， 配合 Flutter 建立跨平台框架。", style: TextStyle(fontSize: 20,)),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 
@@ -351,7 +403,7 @@ class Screen3 extends StatelessWidget {
 }
 
 // ----------------------------------------------------
-// Screen4 - 專業方向 (新增)
+// Screen4 - 專業方向 (維持不變)
 // ----------------------------------------------------
 class Screen4 extends StatelessWidget {
   const Screen4({super.key});
@@ -369,22 +421,22 @@ class Screen4 extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-          // 方向一：軟體工程師 (Software Engineer)
+          // 方向一：軟體工程師 (Software Engineer) - 已修改
           buildDirectionCard(
             context,
-            '軟體開發與工程',
-            '專注於應用程式、系統、或是後端服務的設計、開發與維護。',
+            '全端軟體開發工程師',
+            '專注於網頁與應用程式的前後端設計、開發與維護。',
             'assets/a4.png', // 假設這是你的 a4.png
             Colors.lightBlue.shade100,
           ),
 
           const SizedBox(height: 20),
 
-          // 方向二：資料科學家 (Data Scientist)
+          // 方向二：人工智慧與資料分析 - 已修改
           buildDirectionCard(
             context,
-            '人工智慧與資料分析',
-            '利用統計學、機器學習等技術，從海量資料中提取洞察，建立預測模型。',
+            'AI 模型與資料專案工程師',
+            '利用機器學習技術，並配合現在市場上的大型語言模型，開發 AI 專案與應用。',
             'assets/a2.png', // 範例圖片
             Colors.green.shade100,
           ),
